@@ -1,0 +1,25 @@
+
+<div class="col-md-12">
+  <div class="row">
+
+		<form action="\sign_up" method="POST">
+		
+
+			<div class="form-group">
+			  <label class="col-form-label" for="inputDefault">Input your login</label>
+			  <input type="text" class="form-control" placeholder="Email" name="email" id="inputDefault">
+			</div>
+
+			<div class="form-group">
+			  <label class="col-form-label" for="inputDefault">Input your password</label>
+			  <input type="text" class="form-control" placeholder="Password" name="password" id="inputDefault2">
+			</div>
+
+			{% csrf_token %}
+
+		  <button type="submit" class="btn btn-primary">Submit</button>
+
+		</form>
+	
+	</div>
+</div>

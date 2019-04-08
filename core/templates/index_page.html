@@ -1,0 +1,178 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.css">
+
+
+    <meta charset="UTF-8">
+<style type="text/css"></style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ <title>Title</title>
+	
+
+
+<head>
+
+
+</head>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'features' %}">Features</a>
+      </li>
+
+      {% if not request.session.user_id %}
+
+	      <li class="nav-item">
+	         <a class="nav-link" href="{% url 'sign_up' %}">sign up</a>
+	      </li>
+
+	      <li class="nav-item">
+	         <a class="nav-link" href="{% url 'login' %}">login</a>
+	    </li>
+
+
+      {% endif %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about' %}">About</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'history' %}">History</a>
+      </li>
+
+			{% if request.session.user_id %}
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'exit' %}">Exit</a>
+	      </li>
+	    {% endif %}
+
+	    
+    </ul>
+	{% if request.session.user_id %}
+    <div class="alert alert-dismissible alert-primary">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>Hello!</strong> <a href="#" class="alert-link">{{ name_for_message }}</a> 
+	 {% endif %}
+
+	 
+
+
+  </div>
+</nav>
+<br/>
+<br/>
+
+<div class='row'>
+	<div class="col-md-4"></div>
+
+	<div class="col-md-4">
+		<b><h1>Make me rich</h1></b>
+	</div>
+
+	<div class="col-md-3"></div>
+</div>
+
+<br/>
+
+<div class='row'>
+	<div class="col-md-2"></div>
+
+	<div class="col-md-4">
+			<img src='{% static "img/myphoto.jpg" %}' width="80%" height="100%" />
+	</div>
+
+
+	<div class="col-md-4">
+		<br/>
+		<h2>all amount: {{ total_amount }}</h2>
+
+
+		<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+		  <div class="btn-group mr-2" role="group" aria-label="First group">
+		    <a href ='/pay/5'><button type="button" class="btn btn-secondary"> 5</button></a>
+		    <a href ='/pay/10'><button type="button" class="btn btn-secondary"> 10</button></a>
+		    <a href ='/pay/20'><button type="button" class="btn btn-secondary"> 20</button></a>
+		    <a href ='/pay/50'><button type="button" class="btn btn-secondary"> 50</button></a>
+		  </div>
+		  <div class="btn-group mr-2" role="group" aria-label="Second group">
+		  	<a href ='/pay/100'><button type="button" class="btn btn-secondary"> 100</button></a>
+		  	<a href ='/pay/200'><button type="button" class="btn btn-secondary"> 200</button></a>
+		  	<a href ='/pay/500'><button type="button" class="btn btn-secondary"> 500</button></a>
+		  </div>
+		  <div class="btn-group" role="group" aria-label="Third group">
+					<a href ='/pay/1000'><button type="button" class="btn btn-secondary"> 1000</button></a>		    
+		  </div>
+
+
+		
+		</div>
+	<br/>
+<br/><br/>
+<br/>
+
+	{% if last_amount %}
+
+
+		<div id="warnAlert" class="alert alert-dismissible alert-warning">
+	  	<button type="button"  class="close" onclick="alertClose()" data-dismiss="alert">&times;</button>
+	  	<h4 class="alert-heading">Message!</h4>
+	  	<p class="mb-0">Thank you for tipping {{ last_amount }} <a href="#" class="alert-link"></a>.</p>
+		</div>
+
+
+
+		{% else %}
+			
+    {% endif %}
+
+	{% if does_exist_login %}
+			<div id="warnAlert" class="alert alert-dismissible alert-warning">
+	  	<button type="button"  class="close" onclick="alertClose()" data-dismiss="alert">&times;</button>
+	  	<h4 class="alert-heading">Message!</h4>
+	  	<p class="mb-0">Already exist {{ does_exist_login }}<a href="#" class="alert-link"></a>.</p>
+		</div>
+  {% endif %}
+
+	<script type="text/javascript">
+		function alertClose(){
+			$('#warnAlert')[0].hidden = true;
+		}
+	</script>
+	
+
+	</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
